@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Modifier la licorne</h1>
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input type="text" matInput name="name" [ngModel]="data.unicorn.name" required />
+        </mat-form-field>
+
+        <br />
+
+        <mat-form-field>
+            <mat-label>Année de naissance</mat-label>
+            <input type="number" [min]="1800" matInput name="birthYear" [ngModel]="data.unicorn.birthyear" required />
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" mat-raised-button mat-dialog-close>Annuler</button>
+        <button type="submit" [disabled]="f.invalid" mat-raised-button color="primary">Modifier</button>
+    </div>
+</form>

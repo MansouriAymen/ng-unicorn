@@ -1,0 +1,40 @@
+<mat-card class="mat-elevation-z4">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="example-header-image"
+            [ngStyle]="{ 'background-image': 'url(' + unicorn?.photo + ')' }"
+        ></div>
+        <mat-card-title>{{ unicorn?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ unicorn?.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image alt="photo" [src]="unicorn?.photo" />
+    <mat-card-content>
+        <p>Capacities : {{ capacities }}</p>
+        <p>Birthday :{{ unicorn?.birthyear }}</p>
+        <p>Hobbies :{{ unicorn?.hobbies }}</p>
+        <p *ngIf="age < 60; else elseBlock">age :{{ age }}</p>
+        <ng-template #elseBlock>
+            <p>{{ age }} 😒😒</p>
+        </ng-template>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'">
+        <button mat-mini-fab type="button" color="primary" (click)="afficheCard()">
+            <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-mini-fab type="button" color="primary" (click)="openDialog()">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-mini-fab type="button" color="primary" (click)="openDialog()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button
+            (click)="deleteUnicorn()"
+            mat-mini-fab
+            color="accent"
+            aria-label="Example icon button with a delete icon"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

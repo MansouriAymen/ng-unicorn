@@ -1,0 +1,17 @@
+<!-- unicorn-list.component.html -->
+
+<button mat-icon-button color="warn" (click)="refresh()" aria-label="Example icon button with a heart icon">
+    <mat-icon>loop</mat-icon>
+</button>
+<div *ngIf="unicorns$ | async as unicornss">
+    <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let unicorn of unicorns; let index = i">
+            <app-unicorn-card
+                [unicorn]="unicorn"
+                [capacities$]="capacities$"
+                (deleted)="delete(unicorn)"
+                (updated)="updateUnicorns($event)"
+            ></app-unicorn-card>
+        </div>
+    </div>
+</div>
