@@ -1,17 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { forkJoin, from, Observable } from 'rxjs';
 import { Unicorn } from '../models/unicorn.model';
 import { environment } from '../../../environments/environment';
+import { concatAll, filter, map, mergeMap, toArray } from 'rxjs/operators';
+import { CapacitiesService } from './capacities.service';
+import { Capacitie } from '../models/capacitie.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UnicornsService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private serviceCapacities: CapacitiesService) {}
 
     public getAll(): Observable<Unicorn[]> {
         return this.http.get<Unicorn[]>(`${environment.apiUrl}/unicorns`);
+    }
+    public getUnicornWithCapacities1(): Observable<Unicorn[]> {
+        return this.getAll().pipe(
+            concatAll(),
+            mergeMap(unicorn =>
+                from(unicorn.capacities).pipe(
+                    mergeMap(capacityId => this.serviceCapacities.get(capacityId)),
+                    toArray(),
+                    map((capacities: Capacitie[]): Unicorn => ({ ...unicorn, capacitiesLabels: capacities })),
+                ),
+            ),
+            toArray(),
+        );
+    }
+    public getUnicornWithCapacities(): Observable<any[]> {
+        return forkJoin([this.getAll(), this.serviceCapacities.getAll()]).pipe(
+            map(([unicorns, capacities]) => {
+                return unicorns.map(unicorn => {
+                    return {
+                        ...unicorn,
+                        capacitiesLabels: capacities.filter(capacitie => unicorn.capacities.includes(capacitie.id)),
+                    };
+                });
+            }),
+        );
     }
     public get(id: number): Observable<Unicorn> {
         return this.http.get<Unicorn>(`${environment.apiUrl}/unicorns/${id}`);

@@ -24,7 +24,6 @@ export class AddUnicornComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        //this.vm$ = this.store.pipe(select(fromSelector.selectUnicornModle));
         this.unicornForm = this.fb.group({
             name: ['', Validators.required],
             birthyear: ['', Validators.required],

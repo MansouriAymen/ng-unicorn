@@ -1,3 +1,5 @@
+import { Capacitie } from './capacitie.model';
+
 export interface Unicorn {
     id: number;
     name: string;
@@ -6,6 +8,7 @@ export interface Unicorn {
     photo: string;
     hobbies: string[];
     capacities: number[];
+    capacitiesLabels: Capacitie[];
 }
 export function compareUnicorns(u1: Unicorn, u2: Unicorn) {
     const compare = u1.birthyear - u2.birthyear;

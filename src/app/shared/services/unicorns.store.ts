@@ -13,7 +13,8 @@ import { AppState } from '../../store';
 export class UnicornsStore {
     private subject = new BehaviorSubject<Unicorn[]>([]);
     unicorns$: Observable<Unicorn[]> = this.subject.asObservable();
-    constructor(private http: HttpClient, private store: Store<AppState>) {
+
+    constructor(private http: HttpClient) {
         this.unicorns$ = this.loadAllUnicorns();
     }
 
@@ -33,4 +34,5 @@ export class UnicornsStore {
             }),
         );
     }
+    private;
 }

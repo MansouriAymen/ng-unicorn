@@ -14,7 +14,7 @@ export class UnicornEffects {
         return this.actions$.pipe(
             ofType(fromUnicornActions.loadAllUnicorns),
             mergeMap(action =>
-                this.serviceStoreUnicorn.getAllUnicorns().pipe(
+                this.serviceUnicorn.getAll().pipe(
                     map(unicorns => fromUnicornActions.loadAllUnicornsSuccess({ unicorns })),
                     catchError(error => of(fromUnicornActions.loadAllUnicornsFailure({ error }))),
                 ),

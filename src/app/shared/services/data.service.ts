@@ -13,6 +13,6 @@ export class DataService {
     }
 
     getData(): Observable<any> {
-        return this.subject.asObservable();
+        return this.subject.getValue();
     }
 }

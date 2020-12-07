@@ -14,12 +14,7 @@ export class CapacitiesService {
     public getAll(): Observable<Capacitie[]> {
         return this.http.get<Capacitie[]>(`${environment.apiUrl}/capacities`);
     }
-    private getids() {
-        return this.http
-            .get<any>(`${environment.apiUrl}/capacities`)
-            .pipe(map(capacitie => capacitie.id))
-            .toPromise();
-    }
+
     public get(id: number): Observable<Capacitie> {
         return this.http.get<Capacitie>(`${environment.apiUrl}/capacities/${id}`);
     }
