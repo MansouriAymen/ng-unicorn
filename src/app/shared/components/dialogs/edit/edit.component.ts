@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UnicornsService } from '../../../services/unicorns.service';
 import { Unicorn } from '../../../models/unicorn.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store';
 
 @Component({
     selector: 'app-edit',

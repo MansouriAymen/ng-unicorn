@@ -3,7 +3,7 @@
 <button mat-icon-button color="warn" (click)="refresh()" aria-label="Example icon button with a heart icon">
     <mat-icon>loop</mat-icon>
 </button>
-<div *ngIf="unicorns$ | async as unicornss">
+<div *ngIf="unicornsstore$ | async as unicorns">
     <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
         <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let unicorn of unicorns; let index = i">
             <app-unicorn-card

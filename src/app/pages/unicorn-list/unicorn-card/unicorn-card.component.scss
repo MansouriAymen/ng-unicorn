@@ -5,3 +5,12 @@
 .example-header-image {
     background-size: cover;
 }
+mat-card-title {
+    word-break: break-all;
+}
+.unicorn-card {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

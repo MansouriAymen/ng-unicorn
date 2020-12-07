@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
     title = 'unicorn-ng';
     public nbUnicorn = 0;
-    n = 'nn';
 
     nbUnicorns(nbUnicorns: number) {
         this.nbUnicorn = nbUnicorns;

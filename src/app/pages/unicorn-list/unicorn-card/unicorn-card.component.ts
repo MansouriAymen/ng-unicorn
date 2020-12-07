@@ -6,6 +6,10 @@ import { filter, first, map, single } from 'rxjs/operators';
 import { UnicornViewComponent } from '../../../shared/components/dialogs/unicorn-view/unicorn-view.component';
 import { Capacitie } from '../../../shared/models/capacitie.model';
 import { Observable, pipe } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../../../store';
+import { loadUnicorns } from '../../../store/actions/unicorns.actions';
+import { selectedUnicorns } from '../../../store/selector/unicorn.selectors';
 
 @Component({
     selector: 'app-unicorn-card',
@@ -20,11 +24,13 @@ export class UnicornCardComponent implements OnInit, OnChanges {
     public currentYear = new Date().getFullYear();
     public age = 0;
     public capacities = '';
+    private unicorn$: Observable<Unicorn>;
 
-    constructor(public dialog: MatDialog) {}
+    constructor(public dialog: MatDialog, private store: Store<AppState>) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         this.age = this.currentYear - changes.unicorn?.currentValue.birthyear;
+
         switch (changes.unicorn?.currentValue.capacities.length) {
             case 0: {
                 this.capacities = 'Any Capacities 🤔';
@@ -37,7 +43,10 @@ export class UnicornCardComponent implements OnInit, OnChanges {
         }
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // this.store.dispatch(loadUnicorns({ id: this.unicorn.id }));
+        // this.unicorn$ = this.store.pipe(select(selectedUnicorns));
+    }
     private getCapacities(changes) {
         this.capacities$
             .pipe(

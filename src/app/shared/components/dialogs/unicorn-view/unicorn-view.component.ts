@@ -15,6 +15,7 @@ export class UnicornViewComponent implements OnInit {
         public dialogRef: MatDialogRef<UnicornViewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { unicorn: Unicorn },
     ) {
+        console.log('test', this.data.unicorn);
         this.age = this.currentYear - this.data.unicorn?.birthyear;
     }
 

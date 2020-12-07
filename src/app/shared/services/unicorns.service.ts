@@ -19,11 +19,11 @@ export class UnicornsService {
     public delete(unicorn: Unicorn) {
         return this.http.delete(`${environment.apiUrl}/unicorns/${unicorn.id}`);
     }
-    public update(id: number, body: Unicorn) {
-        return this.http.put(`${environment.apiUrl}/unicorns/${id}`, body);
+    public update(id: number | string, body: Partial<Unicorn>): Observable<Unicorn> {
+        return this.http.put<Unicorn>(`${environment.apiUrl}/unicorns/${id}`, body);
     }
-    public create(body: Unicorn) {
-        return this.http.post(`${environment.apiUrl}/unicorns`, body);
+    public create(body: Unicorn): Observable<Unicorn> {
+        return this.http.post<Unicorn>(`${environment.apiUrl}/unicorns`, body);
     }
     public exist(id: number): Observable<boolean> {
         return this.http.head<boolean>(`${environment.apiUrl}/unicorns/${id}`);

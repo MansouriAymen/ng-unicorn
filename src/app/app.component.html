@@ -1,3 +1,6 @@
-<app-nav [nbUnicorns]="nbUnicorn">
+<!--<app-nav [nbUnicorns]="nbUnicorn">
     <app-unicorn-list (nbUnicorns)="nbUnicorns($event)"></app-unicorn-list>
-</app-nav>
+</app-nav>-->
+
+<app-nav>{{ nbUnicorn }}</app-nav>
+<router-outlet></router-outlet>
