@@ -1,0 +1,34 @@
+<mat-card class="mat-elevation-z4" *ngIf="unicorns$ | async as unicorn">
+    <mat-card-header>
+        <div
+            mat-card-avatar
+            class="example-header-image"
+            [ngStyle]="{ 'background-image': 'url(' + unicorn?.photo + ')' }"
+        ></div>
+        <mat-card-title>{{ unicorn?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ unicorn?.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image alt="photo" [src]="unicorn?.photo" />
+    <mat-card-content>
+        <p>Capacities : {{ unicorn?.capacities }}</p>
+        <p>Birthday :{{ unicorn?.birthyear }}</p>
+        <p>Hobbies :{{ unicorn?.hobbies }}</p>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'">
+        <div class="example-button-container">
+            <button mat-mini-fab type="button" color="primary">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </div>
+        <div class="example-button-container">
+            <button mat-mini-fab type="button" color="primary">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div class="example-button-container">
+            <button mat-mini-fab color="accent" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>

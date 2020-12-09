@@ -15,14 +15,23 @@ import { selectAllUnicorns } from '../../../store/selector/unicorn.selectors';
 })
 export class NavComponent {
     public unicornsnb: number;
+    public cart: Unicorn[] = [];
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
         map(result => result.matches),
         shareReplay(),
     );
 
-    constructor(private breakpointObserver: BreakpointObserver, private store: Store<AppState>) {
+    constructor(
+        private breakpointObserver: BreakpointObserver,
+        private servicecart: DataService,
+        private store: Store<AppState>,
+    ) {
         this.store.pipe(select(selectAllUnicorns)).subscribe(unicorns => {
             this.unicornsnb = unicorns.length;
         });
+        servicecart.subject.subscribe(newCart => (this.cart = newCart));
+    }
+    openCarte() {
+        console.log('carte', this.cart);
     }
 }

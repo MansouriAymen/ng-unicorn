@@ -9,7 +9,9 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "prettier:check": "prettier --check \"**\"",
-        "prettier": "prettier --write \"**\""
+        "prettier": "prettier --write \"**\"",
+        "build:audit": "ng build --prod --source-map",
+        "audit": "source-map-explorer ./dist/unicorn-ng/*.js"
     },
     "husky": {
         "hooks": {
@@ -29,12 +31,15 @@
         "@angular/platform-browser": "~11.0.0",
         "@angular/platform-browser-dynamic": "~11.0.0",
         "@angular/router": "~11.0.0",
+        "@ngneat/until-destroy": "^8.0.3",
         "@ngrx/effects": "^10.0.1",
         "@ngrx/entity": "^10.1.0",
         "@ngrx/router-store": "^10.1.0",
         "@ngrx/schematics": "^10.1.0",
         "@ngrx/store": "^10.0.1",
         "@ngrx/store-devtools": "^10.0.1",
+        "@ngx-translate/core": "^13.0.0",
+        "@ngx-translate/http-loader": "^6.0.0",
         "rxjs": "~6.6.3",
         "tslib": "^2.0.0",
         "zone.js": "~0.10.2"
@@ -59,6 +64,7 @@
         "prettier": "^2.1.2",
         "pretty-quick": "^3.1.0",
         "protractor": "~7.0.0",
+        "source-map-explorer": "^2.5.1",
         "ts-node": "~7.0.0",
         "tslint": "~6.1.0",
         "tslint-config-prettier": "^1.18.0",

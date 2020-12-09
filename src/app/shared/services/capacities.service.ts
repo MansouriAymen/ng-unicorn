@@ -27,7 +27,7 @@ export class CapacitiesService {
     public update(id: number, body: Capacitie) {
         return this.http.put(`${environment.apiUrl}/capacities/${id}`, body);
     }
-    public create(body: Capacitie) {
-        return this.http.post(`${environment.apiUrl}/capacities`, body);
+    public create(body: Omit<Capacitie, 'id'>): Observable<Capacitie> {
+        return this.http.post<Capacitie>(`${environment.apiUrl}/capacities`, body);
     }
 }

@@ -1,0 +1,13 @@
+<form [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <mat-form-field appearance="legacy">
+            <mat-label>Label </mat-label>
+            <input formControlName="label" class="form-control" matInput placeholder="Placeholder" />
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" mat-raised-button mat-dialog-close>Annuler</button>
+        <button type="submit" mat-raised-button color="primary">ADD</button>
+    </div>
+</form>
+{{ capacities$ | async | json }}

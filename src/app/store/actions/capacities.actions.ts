@@ -13,3 +13,10 @@ export const loadAllCapacitiesFailure = createAction(
     '[Capacities List Effects] Load All Capacities Failure',
     props<{ error: any }>(),
 );
+// Add Capacitie
+export const addCapacitie = createAction('[Add Capacitie Component] Add Capacitie', props<{ capacitie: Capacitie }>());
+export const addCapacitieuccess = createAction(
+    '[Add Capacitie Effect] Add Capacitie Success',
+    props<{ capacitie: Capacitie }>(),
+);
+export const addCapacitieFailure = createAction('[Add Capactie Effect] Add Capacite Failure', props<{ error: any }>());

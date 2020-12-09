@@ -10,6 +10,8 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../store';
 import { loadUnicorns } from '../../../store/actions/unicorns.actions';
 import { selectedUnicorns } from '../../../store/selector/unicorn.selectors';
+import { DataService } from '../../../shared/services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-unicorn-card',
@@ -24,9 +26,15 @@ export class UnicornCardComponent implements OnInit, OnChanges {
     public currentYear = new Date().getFullYear();
     public age = 0;
     public capacities = '';
+    public isInCart = false;
     private unicorn$: Observable<Unicorn>;
 
-    constructor(public dialog: MatDialog, private store: Store<AppState>) {}
+    constructor(
+        public dialog: MatDialog,
+        private serviceCart: DataService,
+        private store: Store<AppState>,
+        private route: Router,
+    ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         this.age = this.currentYear - changes.unicorn?.currentValue.birthyear;
@@ -62,11 +70,12 @@ export class UnicornCardComponent implements OnInit, OnChanges {
         this.deleted.emit();
     }
     afficheCard() {
-        this.dialog.open(UnicornViewComponent, {
+        this.route.navigate(['unicorn/' + this.unicorn.id]);
+        /* this.dialog.open(UnicornViewComponent, {
             data: {
                 unicorn: this.unicorn,
             },
-        });
+        });*/
     }
 
     openDialog() {
@@ -87,5 +96,15 @@ export class UnicornCardComponent implements OnInit, OnChanges {
                     });
                 }
             });
+    }
+    addToCate(): void {
+        if (this.unicorn) {
+            if (this.serviceCart.isInCart(this.unicorn)) {
+                this.serviceCart.removeFromCart(this.unicorn);
+            } else {
+                this.serviceCart.addToCart(this.unicorn);
+            }
+            this.isInCart = !this.isInCart;
+        }
     }
 }

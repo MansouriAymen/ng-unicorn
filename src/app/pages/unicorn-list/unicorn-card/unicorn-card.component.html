@@ -5,7 +5,7 @@
             class="example-header-image"
             [ngStyle]="{ 'background-image': 'url(' + unicorn?.photo + ')' }"
         ></div>
-        <mat-card-title>{{ unicorn?.name }}</mat-card-title>
+        <mat-card-title>{{ unicorn?.name | magicName }}</mat-card-title>
         <mat-card-subtitle>{{ unicorn?.name }}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image alt="photo" [src]="unicorn?.photo" />
@@ -22,7 +22,7 @@
         <button mat-mini-fab type="button" color="primary" (click)="afficheCard()">
             <mat-icon>remove_red_eye</mat-icon>
         </button>
-        <button mat-mini-fab type="button" color="primary" (click)="openDialog()">
+        <button mat-mini-fab type="button" [color]="isInCart ? 'accent' : 'primary'" (click)="addToCate()">
             <mat-icon>favorite</mat-icon>
         </button>
         <button mat-mini-fab type="button" color="primary" (click)="openDialog()">

@@ -1,7 +1,14 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { Capacitie } from '../../shared/models/capacitie.model';
-import { loadAllCapacities, loadAllCapacitiesFailure, loadAllCapacitiesSuccess } from '../actions/capacities.actions';
+import {
+    addCapacitieFailure,
+    addCapacitieuccess,
+    loadAllCapacities,
+    loadAllCapacitiesFailure,
+    loadAllCapacitiesSuccess,
+} from '../actions/capacities.actions';
+import { addUnicornFailure, addUnicornSuccess } from '../actions/unicorns.actions';
 
 export const capacitieFeatureKey = 'capacitie';
 
@@ -25,6 +32,10 @@ export const reducer = createReducer(
             ...state,
             error: action.error,
         };
+    }),
+    on(addCapacitieuccess, (state, action) => adapter.addOne(action.capacitie, state)),
+    on(addCapacitieFailure, (state, action) => {
+        return { ...state, error: action.error };
     }),
 );
 export const { selectIds, selectEntities, selectTotal, selectAll } = adapter.getSelectors();

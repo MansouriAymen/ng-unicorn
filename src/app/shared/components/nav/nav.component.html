@@ -17,10 +17,23 @@
                 <mat-icon>list</mat-icon>
                 <span class="nav-caption">Unicorns</span>
             </a>
+            <a mat-list-item routerLink="unicorns">
+                <mat-icon>group_work</mat-icon>
+                <span class="nav-caption">Unicorn</span>
+            </a>
+            <a mat-list-item routerLink="capacitie">
+                <mat-icon>card_giftcard</mat-icon>
+                <span class="nav-caption">Capacities</span>
+            </a>
+            <a mat-list-item routerLink="admin">
+                <mat-icon>admin_panel_settings</mat-icon>
+                <span class="nav-caption">Admin</span>
+            </a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
+            <span>{{ 'APP.APP_NAME' | translate }}</span>
             <button
                 type="button"
                 aria-label="Toggle sidenav"
@@ -32,6 +45,11 @@
             </button>
             <span class="example-spacer"></span>
             <span>Bonne nouvelle, il reste {{ unicornsnb }} licornes à adopter 🚀 !!!</span>
+            <button mat-button type="button" color="white" (click)="openCarte()">
+                <mat-icon [matBadge]="cart.length" [matBadgeHidden]="!cart.length" matBadgeColor="warn"
+                    >add_shopping_cart</mat-icon
+                >
+            </button>
         </mat-toolbar>
         <!-- Add Content Here -->
 

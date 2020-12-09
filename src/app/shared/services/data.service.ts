@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-@Injectable()
+import { Unicorn } from '../models/unicorn.model';
+@Injectable({
+    providedIn: 'root',
+})
 export class DataService {
-    private subject = new BehaviorSubject<any>(0);
+    public subject = new BehaviorSubject<Unicorn[]>([]);
 
-    sendData(message: any) {
-        this.subject.next(message);
+    public addToCart(unicorn: Unicorn): void {
+        const currentCart = this.subject.getValue();
+        const newCart = currentCart.concat(unicorn as Unicorn);
+        this.subject.next(newCart);
     }
 
-    clearData() {
-        this.subject.next(0);
+    public removeFromCart(unicornToRemove: Unicorn): void {
+        const currentCart = this.subject.getValue();
+        const newCart = currentCart.filter(unicorn => unicorn.id !== unicornToRemove.id);
+        this.subject.next(newCart);
     }
 
-    getData(): Observable<any> {
-        return this.subject.getValue();
+    public isInCart(unicorn: Unicorn): boolean {
+        const currentCart = this.subject.getValue();
+        return currentCart.some(u => u.id === unicorn.id);
     }
 }

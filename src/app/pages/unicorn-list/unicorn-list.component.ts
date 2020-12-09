@@ -16,7 +16,8 @@ import { selectAllUnicorns } from '../../store/selector/unicorn.selectors';
 import { Update } from '@ngrx/entity';
 import { loadAllCapacities } from '../../store/actions/capacities.actions';
 import { selectAllCapacities } from '../../store/selector/capacitie.selectors';
-
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+@UntilDestroy()
 @Component({
     selector: 'app-unicorn-list',
     templateUrl: './unicorn-list.component.html',
@@ -55,7 +56,7 @@ export class UnicornListComponent implements OnInit {
         this.loadCapacities();
     }
     private loadCapacities(): void {
-        this.capacities$ = this.store.pipe(select(selectAllCapacities));
+        this.capacities$ = this.store.pipe(select(selectAllCapacities)).pipe(untilDestroyed(this));
     }
 
     private loadUnicorns(): void {

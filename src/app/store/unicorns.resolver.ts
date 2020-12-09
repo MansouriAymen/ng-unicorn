@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from './index';
 import { loadAllUnicorns } from './actions/unicorns.actions';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class UnicornsResolver implements Resolve<any> {
     constructor(private store: Store<AppState>) {}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
